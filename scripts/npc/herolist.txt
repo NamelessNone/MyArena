@@ -1,0 +1,6 @@
+"CustomHeroList"
+{
+	"npc_dota_hero_windrunner"	"-1"
+	"npc_dota_hero_lina"		"-1"
+	
+}

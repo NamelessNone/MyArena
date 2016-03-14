@@ -1,0 +1,442 @@
+// Dota Heroes File
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	//=================================================================================================================
+	// Templar Assassin: Refraction Holdout
+	//=================================================================================================================
+	"templar_assassin_refraction_holdout"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"17.0 17.0 17.0 17.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_absorb"				"200 300 400 500"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"20 40 60 80"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"17.0 17.0 17.0 17.0"
+			}
+		}
+	}
+
+    // Firemage-ShortFireball
+    "Firemage_Fireball"
+    {
+
+        //General
+        //-------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+        "AbilityTextureName"            "ogre_magi_fireblast"
+
+        // Casting
+        //-------------------
+        "AbilityCastRange"				"500"
+        "AbilityCastPoint"				"0.1"
+
+        // Time
+		//-----------------------
+		"AbilityCooldown"				"5.0"
+
+
+		// Cost
+		//---------------------
+		"AbilityManaCost"				"0"
+
+        "Maxlevel"                      "1"
+        "AbilityDamage"                 "75"
+
+        "OnSpellStart"
+        {
+            "LinearProjectile"
+            {
+                "Target" "POINT"
+                "EffectName"    "particles/lina_base_attack.vpcf"
+               // "EffectName" "particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf"
+                "MoveSpeed" "1000"
+                "StartRadius" "115"
+                "EndRadius" "115"
+                "StartPosition" "attach_hitloc"
+                "FixedDistance" "500"
+                "TargetTeams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                //"TargetTypes" "DOTA_UNIT_TARGET_HERO"
+                "TargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                "HasFrontalCone" "0"
+                "ProvidesVision" "1"
+                "VisionRadius" "650"
+            }
+
+        }
+
+        "OnProjectileHitUnit"
+        {
+            "Damage"
+            {
+                "Target"    "TARGET"
+                "Type"      "DAMAGE_TYPE_MAGICAL"
+                "Damage"    "%AbilityDamage"
+            }
+
+            "FireEffect"
+            {
+                    //"EffectName"            "particles/units/heroes/hero_sven/sven_spell_warcry.vpcf"
+                    "EffectName"            "particles/units/heroes/hero_invoker/invoker_sun_strike.vpcf"
+                    "EffectAttachType"      "attach_hitloc"
+                    "Target"                "TARGET"
+            }
+
+            "Damage"
+            {
+                "Type"          "DAMAGE_TYPE_MAGICAL"
+                "Damage"        "%AbilityDamage"
+                "Target"
+                {
+                    "Center"    "TARGET"
+                    "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Type"      "DOTA_UNIT_TARGET_ALL"
+                    "Radius"    "300"
+                }
+            }
+        }
+
+    }
+    // Firemage-ShortFireball End
+
+
+    //Firemage-Fireblast
+    "Firemage_FireBlast"
+    {
+        //General
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+        "AbilityTextureName"            "lina_light_strike_array"
+        // Casting
+        //-------------------
+        "AbilityCastRange"				"400"
+        "AbilityCastPoint"				"0.5"
+        "AoERadius"                     "300"
+
+        // Time
+		//-----------------------
+		"AbilityCooldown"				"8.0"
+
+
+		// Cost
+		//---------------------
+		"AbilityManaCost"				"0"
+
+        "Maxlevel"                      "1"
+        "AbilityDamage"                 "100"
+
+        "OnSpellStart"
+        {
+            "DelayedAction"
+            {
+                "Delay"     "1.0"
+                "Action"
+                {
+
+                    "FireEffect"
+                    {
+                        //"EffectName"            "particles/units/heroes/hero_sven/sven_spell_warcry.vpcf"
+                        "EffectName"            "particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf"
+                        "EffectAttachType"      "world_origin"
+                        "TargetPoint"           "POINT"
+                    }
+
+                    "Damage"
+                    {
+                        "Target"
+                        {
+                            "Center"    "POINT"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Type"      "DOTA_UNIT_TARGET_ALL"
+                            "Radius"    "300"
+                        }
+                        "Type"          "DAMAGE_TYPE_MAGICAL"
+                        "Damage"        "%AbilityDamage"
+                    }
+
+                    "Stun"
+                    {
+                        "Target"
+                        {
+                            "Center"    "POINT"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Type"      "DOTA_UNIT_TARGET_ALL"
+                            "Radius"    "300"
+                        }
+                        "Duration"      "1"
+                    }
+                }
+            }
+        }
+
+
+    }
+    //Firemage-Fireblast end
+
+
+    //Firemage_Fireblink start
+    "Firemage_Fireblink"
+    {
+        //General
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+        "AbilityTextureName"            "antimage_blink"
+
+        // Casting
+        //-------------------
+        "AbilityCastRange"				"400"
+        "AbilityCastPoint"				"0.1"
+
+        // Time
+		//-----------------------
+		"AbilityCooldown"				"8.0"
+
+
+		// Cost
+		//---------------------
+		"AbilityManaCost"				"0"
+
+        "Maxlevel"                      "1"
+        "AbilityDamage"                 "50"
+
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "scripts/vscripts/firemage_fireblink.lua"
+                "Function"      "Fireblink"
+                "Target"        "POINT"
+            }
+
+            "ApplyModifier"
+            {
+                "ModifierName"                  "modifier_MyAbility_point_act"
+                "Target"                        "CASTER"
+            }
+
+            "ApplyModifier"
+            {
+                "ModifierName"                "modifier_phased"
+                "Target"                        "CASTER"
+            }
+
+
+            "DelayedAction"
+            {
+                "Delay"     "0.2"
+                "Action"
+                {
+                "FireEffect"
+                {
+                    "EffectName"            "particles/prototype_fx/item_linkens_buff_explosion.vpcf"
+                    "EffectAttachType"      "world_origin"
+                    "TargetPoint"           "POINT"
+                }
+                }
+            }
+
+        }
+
+
+
+        "Modifiers"
+        {
+            "modifier_MyAbility_point_act"
+            {
+                "Duration"                          "0.2"
+                "OverrideAnimation"                 "ACT_DOTA_ATTACK_EVENT"
+            }
+        }
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"        "FIELD_INTEGER"
+                "radius"                "300"
+            }
+        }
+
+
+    }
+
+    //Firemage_Fireblink end
+
+
+
+
+    //Firemage_Glory start
+    "Firemage_Glory"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_AURA"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+        "AbilityTextureName"            "ember_spirit_fire_remnant"
+
+        "AbilityCastPoint"				"1.0"
+
+        "Maxlevel"                      "1"
+
+
+        "OnToggleOn"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "Aura_Thinker"
+ //               {
+
+//                    "DegenSelf_Thinker"
+//                }
+                "Target"            "CASTER"
+            }
+
+            "ApplyModifier"
+            {
+                "ModifierName"  "DegenSelf_Thinker"
+                "Target"            "CASTER"
+            }
+        }
+
+        "OnToggleOff"
+        {
+            "RemoveModifier"
+            {
+                "ModifierName"    "Aura_Thinker"
+ //               {
+
+//                    "DegenSelf_Thinker"
+//                }
+                "Target"            "CASTER"
+            }
+
+
+            "RemoveModifier"
+            {
+                "ModifierName"  "DegenSelf_Thinker"
+                "Target"            "CASTER"
+            }
+        }
+
+
+        "Modifiers"
+        {
+            "Aura_Thinker"
+            {
+                "Aura"          "ReduceEnemyMR"
+                "Aura_Radius"   "1000"
+                "Aura_Teams"    "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"    "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
+                "Aura_Flags"    "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_luna/luna_eclipse_cast_moonlight_glow06.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                }
+            }
+
+            "DegenSelf_Thinker"
+            {
+                "Aura"          "DegenSelf"
+                "Aura_Radius"   "10"
+                "Aura_Teams"    "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"    "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
+            }
+
+
+            "DegenSelf"
+            {
+                "IsDebuff"          "1"
+                "IsPurgable"        "0"
+                "Duration"          "0.5"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"     "-2.0"
+                }
+            }
+
+
+
+            "ReduceEnemyMR"
+            {
+                "IsDebuff"      "1"
+                "IsPurgable"    "0"
+                "EffectName"    "particles/units/heroes/hero_skeletonking/wraith_king_ambient.vpcf"
+                "Duration"      "0.5"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"    "-20"
+                }
+            }
+
+        }
+
+
+
+    }
+
+
+    //Firemage_Glory End
+
+
+
+
+
+
+
+
+
+
+
+}

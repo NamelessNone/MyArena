@@ -1,0 +1,85 @@
+// Dota Heroes File
+// NOTE: This is not for creating new heroes, this is for taking a currently existing hero as a template and overriding
+// the specified key-value combinations.  Use override_hero <hero_to_override> for this.
+"DOTAHeroes"
+{
+	//=================================================================================================================
+	// HERO: Templar Assassin
+	//=================================================================================================================
+	"CloseRanger"
+	{
+		"override_hero"				"npc_dota_hero_windrunner"			// Hero to override
+		"Models"                    "models/heroes/windrunner/windrunner.vmdl"
+		"StatusHealth"              "10"
+		//"Ability1"					"templar_assassin_refraction_holdout"		// Ability 1
+		//"VisionNighttimeRange"		"1800"										// Range of vision at night time.
+	}
+
+    "FireMage"
+    //=================================================================================================================
+	// HERO: Lina
+	//=================================================================================================================
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"override_hero"				"npc_dota_hero_lina"			// Hero to override
+        "Model"			"models/heroes/lina/lina.mdl"	// Model.
+		"Portrait"		"vgui/hud/heroportraits/portrait_lina"		// Small image for hero selection
+		"IdleExpression"	"scenes/lina/lina_exp_idle_01.vcd"		// custom facial animation idle
+		"SoundSet"		"Hero_Lina"									// Name of sound set.
+		"IdleSoundLoop"	"Hero_Lina.IdleLoop"
+		"BotImplemented"			"1"
+		"ModelScale"					".81"
+		"HeroGlowColor" 			"254 90 5"
+		"HeroSelectSoundEffect"		"Hero_Lina.Pick"
+
+		// Abilities
+		//-------------------------------------------------------------------------------------------------------------
+		"Ability1"				"Firemage_Fireball"						// Ability 1
+		"Ability2"				"Firemage_FireBlast"					// Ability 2
+		"Ability3"				"Firemage_Fireblink"					// Ability 3
+		"Ability4"				"Firemage_Glory"						// Ability 4
+
+		// Armor
+		//-------------------------------------------------------------------------------------------------------------
+		"ArmorPhysical"			"-1"											// Physical protection.
+
+		// Attack
+		//-------------------------------------------------------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"13"									// Damage range min.
+		"AttackDamageMax"			"31"									// Damage range max.
+		"AttackRate"				"1.7"									// Speed of attack.
+		"AttackAnimationPoint"		"0.75"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"									// Range within a target can be acquired.
+		"AttackRange"				"500"									// Range within a target can be attacked.
+		"ProjectileModel"			"particles/units/heroes/hero_lina/lina_base_attack.vpcf" // Particle system model for projectile.
+		"ProjectileSpeed"			"1000"									// Speed of projectile.
+
+		// Attributes
+		//-------------------------------------------------------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_INTELLECT"
+		"AttributeBaseStrength"		"18"									// Base strength
+		"AttributeStrengthGain"		"1.5"									// Strength bonus per level.
+		"AttributeBaseIntelligence"	"27"									// Base intelligence
+		"AttributeIntelligenceGain"	"3.2"									// Intelligence bonus per level.
+		"AttributeBaseAgility"		"16"									// Base agility
+		"AttributeAgilityGain"		"1.5"									// Agility bonus per level.
+
+		// Movement
+		//-------------------------------------------------------------------------------------------------------------
+		"MovementSpeed"				"295"									// Speed.
+		"MovementTurnRate"			"0.5"									// Turning rate.
+
+		// Bounds
+		//-------------------------------------------------------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"HealthBarOffset"			"170"
+
+
+		"VoiceFile"				"scripts/voscripts/game_sounds_vo_lina.txt"
+		"ParticleFile"			"particles/units/heroes/hero_lina.pcf"
+		"GameSoundsFile"			"scripts/game_sounds_heroes/game_sounds_lina.txt"
+
+	}
+}
