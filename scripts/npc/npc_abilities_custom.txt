@@ -430,8 +430,64 @@
     //Firemage_Glory End
 
 
+//Boss_charger_BraveCharge
+
+ "Charger_BraveCharge"
+    {
+        //General
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT" //| DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+        "AbilityTextureName"            "antimage_blink"
+
+        // Casting
+        //-------------------
+        "AbilityCastRange"				"600"
+        "AbilityCastPoint"				"0.1"
+
+        // Time
+		//-----------------------
+		"AbilityCooldown"				"1.0"
 
 
+		// Cost
+		//---------------------
+		"AbilityManaCost"				"0"
+
+        "Maxlevel"                      "1"
+        "AbilityDamage"                 "50"
+
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type" "FIELD_INTEGER"
+                "leap_distance" "100"
+            }
+            "02"
+            {
+                "var_type" "FIELD_INTEGER"
+                "leap_speed" "600"
+            }
+    }
+
+
+
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "scripts/vscripts/boss_BraveCharge.lua"
+                "Function"      "BraveCharge"
+                "Target"        "POINT"
+            }
+        }
+
+    }
 
 
 
